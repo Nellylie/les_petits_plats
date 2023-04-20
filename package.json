@@ -181,7 +181,7 @@
     "eslint-plugin-promise": "^6.1.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass": "sass --watch ./style/main.scss:./style/style.css --style expanded"
   },
   "repository": {
     "type": "git",

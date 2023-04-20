@@ -1,3 +1,6 @@
 import { getRecipes } from './getdata.js'
-
-getRecipes()
+import { Recettefactory } from './Recettefactory.js'
+const lesRecettes = await getRecipes()
+const parentCartes = document.querySelector('.recettes')
+console.log('div', parentCartes)
+parentCartes.innerHTML = new Recettefactory(lesRecettes).factoryCartes()

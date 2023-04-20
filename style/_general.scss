@@ -1,0 +1,118 @@
+@use "utils" as u;
+
+body{
+    margin:auto;
+    width:100%;
+}
+.header-logo{
+ margin: 20px auto;
+}
+.main-general{
+    position:relative;
+    width: 90%;
+    margin:auto;
+}
+.searchBar{
+    background-color: u.$gris;
+    height:50px;
+    padding-left: 10px;
+}
+.icone{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height:50px;
+}
+.inputSearch{
+    background-color: transparent;
+    border: none;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    height:100%;
+}
+
+.groupe-select{
+    gap:30px;
+    width:500px;
+    
+}
+.form-select{
+    font-size: 18px;
+}
+
+#form-select__ingredients{
+background-color: u.$bleu;
+color: u.$blanc;
+}
+
+#form-select__appareils{
+    background-color: u.$vert;
+    color: u.$blanc;
+
+}
+#form-select__ustensiles{
+    background-color: u.$orange;
+    color: u.$blanc;
+}
+
+.recettes{
+    font-size: x-small;
+    line-height: 17px;
+}
+.recettes-article{
+    margin-bottom: 40px;
+
+}
+.recettes__image{
+background-color: u.$gris__nuance;
+margin:auto;
+height:170px
+}
+.recettes__detail{
+    margin:auto;
+    background-color: u.$gris;
+padding:20px;
+}
+
+.recettes__entete{
+    font-size: medium;
+}
+
+.recettes__corps{
+
+}
+
+.corps__indications{
+    height: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+-webkit-line-clamp: 6;
+-webkit-box-orient: vertical;
+
+}
+.corps__ingredient{
+    height: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+-webkit-line-clamp: 6;
+-webkit-box-orient: vertical;
+
+}
+
+.entete__temps-preparation{
+    font-size: large;
+    font-weight: 700;
+    text-align: end;
+    white-space:nowrap;
+
+}
+.preparation-temps{
+}
+
+.entete__titre{
+    font-size: 18px;
+}
