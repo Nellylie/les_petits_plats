@@ -29,17 +29,20 @@
             <div class="icone col-md-1"><i class="fa-solid fa-magnifying-glass"></i></div>
         </form>
         <div class="selectSearch">
-            <div class="tag">tag</div>
-            <div class="groupe-select row justify-content-start">
-                <select class="form-select form-select-lg mb-3 col" id="form-select__ingredients">
-                    <option>Ingredients</option>
-                </select>
-                <select class="form-select form-select-lg mb-3 col" id="form-select__appareils">
-                    <option>Appareils</option>
-                </select>
-                <select class="form-select form-select-lg mb-3 col" id="form-select__ustensiles">
-                    <option>Ustensiles</option>
-                </select>
+            <div class="tag-affiche row"></div>
+            <div class="groupe-select">
+                <div class="form-select-groupe" id="form-select__ingredients">
+                    <div class ="conteneur-input-icone"><input class = "ingredients-input" placeholder="Rechercher un ingédient"><i class="fa-solid fa-angle-down fa-xl icone-position col-1"></i></div>
+                    <div class = "ingredients-groupe"></div>
+                </div>
+                <div class="form-select-groupe" id="form-select__appareils">
+                    <div class ="conteneur-input-icone"><input class = "appareils-input" placeholder="Rechercher un appareil"><i class="fa-solid fa-angle-down fa-xl icone-position col-1"></i></div>
+                    <div class = "appareils-groupe"></div>
+                </div>
+                <div class="form-select-groupe" id="form-select__ustensiles">
+                    <div class ="conteneur-input-icone"><input class = "ustensiles-input" placeholder="Rechercher un ustensile"><i class="fa-solid fa-angle-down fa-xl icone-position col-1"></i></div>
+                    <div class = "ustensiles-groupe"></div>
+                </div>
             </div>
         </div>
         <div class="recettes row justify-content-between">

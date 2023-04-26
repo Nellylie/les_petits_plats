@@ -40,6 +40,24 @@ export class RecetteArticle {
     new Array(this.listeIngredients)[0].forEach((ingredient) => { ingredientRecette.appendChild(ingredient) })
     noticeRecette.textContent = this.description
 
+    const appareils = document.createElement('div')
+    const appareil = document.createElement('div')
+    appareils.setAttribute('class', 'appareil-conteneur row')
+    appareil.setAttribute('class', 'appareil col-auto align-self-start')
+    appareil.textContent = `${this.appareil}`
+    appareils.appendChild(appareil)
+    ingredientRecette.appendChild(appareils)
+
+    const ustensiles = document.createElement('div')
+    this.ustensil.forEach((ustensilOne) => {
+      const ustensil = document.createElement('div')
+      ustensiles.setAttribute('class', 'ustensil-conteneur row')
+      ustensil.setAttribute('class', 'ustensile col-auto align-self-start')
+      ustensil.textContent = `${ustensilOne}`
+      ustensiles.appendChild(ustensil)
+      ingredientRecette.appendChild(ustensiles)
+    })
+
     articleRecette.appendChild(conteneurImageRecette)
     articleRecette.appendChild(recetteDescription)
     recetteDescription.appendChild(enteteRecette)

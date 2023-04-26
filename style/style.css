@@ -10748,6 +10748,11 @@ body {
   height: 50px;
 }
 
+.icone-position {
+  margin-right: 25px;
+  margin-top: 5px;
+}
+
 .inputSearch {
   background-color: transparent;
   border: none;
@@ -10761,25 +10766,166 @@ body {
 .groupe-select {
   gap: 30px;
   width: 500px;
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 
-.form-select {
+.ingredients-groupe {
+  gap: 0 10px;
+  height: 50px;
+  width: 250px;
+}
+
+.appareils-groupe {
+  gap: 0 10px;
+  height: 50px;
+  width: 250px;
+}
+
+.ustensiles-groupe {
+  height: 50px;
+  gap: 0 10px;
+  width: 250px;
+}
+
+.ingredients-groupe--deploye {
+  height: auto;
+  gap: 0 10px;
+  width: auto;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #3282F7;
+}
+
+.appareils-groupe--deploye {
+  height: auto;
+  gap: 0 10px;
+  width: auto;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #68D9A4;
+}
+
+.ustensiles-groupe--deploye {
+  height: auto;
+  gap: 0 10px;
+  width: auto;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #ED6454;
+}
+
+.tag-affiche {
+  gap: 20px;
+  margin: 10px;
+}
+
+.fa-padding {
+  padding: 15px 10px;
+}
+
+.tag-ingredient {
+  padding: 0px 10px;
+  border-radius: 10px;
+  color: white;
+  width: auto;
+  background-color: #3282F7;
+  font-size: medium;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+.tag-appareil {
+  padding: 0px 10px;
+  border-radius: 10px;
+  color: white;
+  width: auto;
+  background-color: #68D9A4;
+  font-size: medium;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+.tag-ustensile {
+  padding: 0px 10px;
+  border-radius: 10px;
+  color: white;
+  width: auto;
+  background-color: #ED6454;
+  font-size: medium;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+.form-select-groupe {
+  border-radius: 5px;
   font-size: 18px;
+  height: 40px;
 }
 
 #form-select__ingredients {
+  position: relative;
   background-color: #3282F7;
   color: #FFFFFF;
 }
 
 #form-select__appareils {
+  position: relative;
   background-color: #68D9A4;
   color: #FFFFFF;
 }
 
 #form-select__ustensiles {
+  position: relative;
   background-color: #ED6454;
   color: #FFFFFF;
+}
+
+.conteneur-input-icone {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.ingredients-input {
+  padding: 10px 10px 0 10px;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.appareils-input {
+  padding: 10px 10px 0 10px;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.ustensiles-input {
+  padding: 10px 10px 0 10px;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.ingredients-input::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+.appareils-input::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+.ustensiles-input::placeholder {
+  color: white;
+  opacity: 0.5;
 }
 
 .recettes {
