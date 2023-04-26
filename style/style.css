@@ -10755,6 +10755,7 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
+  outline: none;
 }
 
 .groupe-select {
@@ -10782,12 +10783,24 @@ body {
 }
 
 .recettes {
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 0 5% !important;
+  grid-template-columns: 30% 30% 30% !important;
+  grid-auto-rows: auto;
   font-size: x-small;
   line-height: 17px;
 }
 
 .recettes-article {
-  margin-bottom: 40px;
+  font-size: small;
+  line-height: 17px;
+  border-radius: 5px 5px 0px 0px;
+  margin: 20px auto;
+}
+
+.invisible {
+  display: none;
 }
 
 .recettes__image {
@@ -10833,6 +10846,10 @@ body {
 
 .entete__titre {
   font-size: 18px;
+}
+
+.ingredient {
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=style.css.map */
