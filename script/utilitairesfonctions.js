@@ -15,7 +15,7 @@ export function effaceElementTags (tagIngredientId) {
   tagContain.removeChild(tagBaliseIngredientId)
 }
 
-export function EffaceDoubleDonnees (donnees) {
+export function effaceDoubleDonnees (donnees) {
   const chaqueDonnees = donnees.filter((donnee, index) => {
     return donnees.indexOf(donnee) === index
   })

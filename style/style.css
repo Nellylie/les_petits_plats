@@ -10722,6 +10722,7 @@ textarea.form-control-lg {
 body {
   margin: auto;
   width: 100%;
+  min-width: 1000px;
 }
 
 .header-logo {
@@ -10737,7 +10738,9 @@ body {
 .searchBar {
   background-color: #E7E7E7;
   height: 50px;
+  width: 99%;
   padding-left: 10px;
+  margin: auto;
 }
 
 .icone {
@@ -10772,20 +10775,26 @@ body {
 
 .ingredients-groupe {
   gap: 0 10px;
+  display: flex;
+  align-items: center;
   height: 50px;
-  width: 250px;
+  width: 140px;
 }
 
 .appareils-groupe {
+  display: flex;
+  align-items: center;
   gap: 0 10px;
   height: 50px;
-  width: 250px;
+  width: 140px;
 }
 
 .ustensiles-groupe {
+  display: flex;
   height: 50px;
   gap: 0 10px;
-  width: 250px;
+  width: 140px;
+  align-items: center;
 }
 
 .ingredients-groupe--deploye {
@@ -10860,11 +10869,14 @@ body {
 .form-select-groupe {
   border-radius: 5px;
   font-size: 18px;
-  height: 40px;
+  width: auto;
+  margin: 0 0 0 10px;
+  height: 50px;
 }
 
 #form-select__ingredients {
   position: relative;
+  width: auto;
   background-color: #3282F7;
   color: #FFFFFF;
 }
@@ -10890,7 +10902,8 @@ body {
 }
 
 .ingredients-input {
-  padding: 10px 10px 0 10px;
+  width: 115px;
+  padding: 10px;
   color: #FFFFFF;
   border: none;
   outline: none;
@@ -10898,7 +10911,8 @@ body {
 }
 
 .appareils-input {
-  padding: 10px 10px 0 10px;
+  width: 100px;
+  padding: 10px;
   color: #FFFFFF;
   border: none;
   outline: none;
@@ -10906,26 +10920,75 @@ body {
 }
 
 .ustensiles-input {
-  padding: 10px 10px 0 10px;
+  width: 100px;
+  padding: 10px;
   color: #FFFFFF;
   border: none;
   outline: none;
   background-color: transparent;
 }
 
-.ingredients-input::placeholder {
+.ingredients-input--taille {
+  width: 250px;
+  padding: 10px;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.appareils-input--taille {
+  width: 250px;
+  padding: 10px;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.ustensiles-input--taille {
+  width: 250px;
+  padding: 10px;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.ingredients-input--taille::placeholder {
+  align-items: center;
   color: white;
   opacity: 0.5;
+}
+
+.appareils-input--taille::placeholder {
+  align-items: center;
+  color: white;
+  opacity: 0.5;
+}
+
+.ustensiles-input--taille::placeholder {
+  align-items: center;
+  color: white;
+  opacity: 0.5;
+}
+
+.ingredients-input::placeholder {
+  align-items: center;
+  color: white;
+  opacity: 1;
 }
 
 .appareils-input::placeholder {
+  align-items: center;
   color: white;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .ustensiles-input::placeholder {
+  align-items: center;
   color: white;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .recettes {
@@ -10943,6 +11006,8 @@ body {
   line-height: 17px;
   border-radius: 5px 5px 0px 0px;
   margin: 20px auto;
+  min-width: 250px;
+  min-height: 250px;
 }
 
 .invisible {
@@ -10951,6 +11016,7 @@ body {
 
 .recettes__image {
   background-color: #C7BEBE;
+  border-radius: 5px 5px 0px 0px;
   margin: auto;
   height: 170px;
 }
@@ -10981,6 +11047,31 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+}
+
+.ingredientsConteneur {
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  padding: 0 11px;
+}
+
+.ingredient {
+  font-size: 12px;
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.quantite {
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.unite {
+  width: auto;
+  padding: 0;
+  margin: 0;
 }
 
 .entete__temps-preparation {

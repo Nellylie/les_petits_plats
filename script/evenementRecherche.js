@@ -1,7 +1,7 @@
 import { declencheurTriArticleAffiche } from './filtreArticleAffiche.js'
-import { Tag } from './Tag.js'
-import { EffaceDoubleDonnees } from './utilitairesfonctions.js'
-
+import { tagDivAppareil, tagDivUstensil, tagDivIngredient } from './tag.js'
+import { effaceDoubleDonnees } from './utilitairesfonctions.js'
+import { rechercherTag } from './tagRecherche.js'
 export function interactionRecherche () {
   const rechercheBar = document.querySelector('.inputSearch')
   const boutonRechercheBar = document.querySelector('.icone')
@@ -29,7 +29,42 @@ export function interactionRecherche () {
   const groupeAppareilTag = document.querySelector('.appareils-groupe')
   const groupeUstensilTag = document.querySelector('.ustensiles-groupe')
 
+  document.querySelector('.recettes').addEventListener('mouseover', () => {
+    groupeIngredientTag.innerHTML = ''
+    groupeAppareilTag.innerHTML = ''
+    groupeUstensilTag.innerHTML = ''
+    inputIngredientTag.value = ''
+    inputAppliancesTag.value = ''
+    inputUstensilsTag.value = ''
+    inputAppliancesTag.className = ('appareils-input')
+    inputUstensilsTag.className = ('ustensiles-input')
+    inputIngredientTag.className = ('ingredients-input')
+    document.getElementsByName('ingredients-name')[0].placeholder = 'Ingredients'
+    document.getElementsByName('appareils-name')[0].placeholder = 'Appareils'
+    document.getElementsByName('ustensiles-name')[0].placeholder = 'Ustensiles'
+  })
+
   inputIngredientTag.addEventListener('click', () => {
+    document.getElementsByName('ingredients-name')[0].placeholder = 'Rechercher un ingredient'
+    inputIngredientTag.className = ('ingredients-input--taille')
+    inputAppliancesTag.className = ('appareils-input')
+    inputUstensilsTag.className = ('ustensiles-input')
+  })
+  inputAppliancesTag.addEventListener('click', () => {
+    document.getElementsByName('appareils-name')[0].placeholder = 'Rechercher un appareil'
+    inputIngredientTag.className = ('ingredients-input')
+    inputAppliancesTag.className = ('appareils-input--taille')
+    inputUstensilsTag.className = ('ustensiles-input')
+  })
+  inputUstensilsTag.addEventListener('click', () => {
+    document.getElementsByName('ustensiles-name')[0].placeholder = 'Rechercher un ustensile'
+    inputIngredientTag.className = ('ingredients-input')
+    inputAppliancesTag.className = ('appareils-input')
+    inputUstensilsTag.className = ('ustensiles-input--taille')
+  })
+
+  inputIngredientTag.addEventListener('input', (e) => {
+    const motRecherche = e.target.value
     groupeAppareilTag.className = 'appareils-groupe'
     groupeIngredientTag.className = 'ingredients-groupe--deploye'
     groupeUstensilTag.className = 'ustensiles-groupe'
@@ -45,19 +80,21 @@ export function interactionRecherche () {
       const chaqueAppareils = recetteAffiche.querySelectorAll('.appareil')
       const chaqueUstensiles = recetteAffiche.querySelectorAll('.ustensile')
 
-      chaqueIngredient.forEach((ingredient) => tableauIngredients.push(ingredient.textContent))
-      chaqueAppareils.forEach((appareil) => tableauAppareils.push(appareil.textContent))
-      chaqueUstensiles.forEach((ustensile) => tableauUstensiles.push(ustensile.textContent))
+      chaqueIngredient.forEach((ingredient) => tableauIngredients.push(ingredient.textContent.toLowerCase()))
+      chaqueAppareils.forEach((appareil) => tableauAppareils.push(appareil.textContent.toLowerCase()))
+      chaqueUstensiles.forEach((ustensile) => tableauUstensiles.push(ustensile.textContent.toLowerCase()))
     })
 
-    const chaqueIngredientSansDoublons = EffaceDoubleDonnees(tableauIngredients)
+    const chaqueIngredientSansDoublons = effaceDoubleDonnees(tableauIngredients)
 
+    const tagsCorrespondants = rechercherTag(motRecherche, chaqueIngredientSansDoublons)
     if (groupeIngredientTag !== null) { groupeIngredientTag.innerHTML = '' }
-    chaqueIngredientSansDoublons.forEach((motIngredientTag) => {
-      groupeIngredientTag.appendChild(new Tag().tagDivIngredient(motIngredientTag))
+    tagsCorrespondants.forEach((motIngredientTag) => {
+      groupeIngredientTag.appendChild(tagDivIngredient(motIngredientTag))
     })
   })
-  inputAppliancesTag.addEventListener('click', () => {
+  inputAppliancesTag.addEventListener('input', (e) => {
+    const motRecherche = e.target.value
     const recettesAffichees = document.querySelectorAll('article:not(.invisible)')
     groupeAppareilTag.className = 'appareils-groupe--deploye'
     groupeIngredientTag.className = 'ingredients-groupe'
@@ -72,18 +109,19 @@ export function interactionRecherche () {
       const chaqueAppareils = recetteAffiche.querySelectorAll('.appareil')
       const chaqueUstensiles = recetteAffiche.querySelectorAll('.ustensile')
 
-      chaqueIngredient.forEach((ingredient) => tableauIngredients.push(ingredient.textContent))
-      chaqueAppareils.forEach((appareil) => tableauAppareils.push(appareil.textContent))
-      chaqueUstensiles.forEach((ustensile) => tableauUstensiles.push(ustensile.textContent))
+      chaqueIngredient.forEach((ingredient) => tableauIngredients.push(ingredient.textContent.toLowerCase()))
+      chaqueAppareils.forEach((appareil) => tableauAppareils.push(appareil.textContent.toLowerCase()))
+      chaqueUstensiles.forEach((ustensile) => tableauUstensiles.push(ustensile.textContent.toLowerCase()))
     })
-    const chaqueAppareilsSansDoublons = EffaceDoubleDonnees(tableauAppareils)
-
+    const chaqueAppareilsSansDoublons = effaceDoubleDonnees(tableauAppareils)
+    const tagsCorrespondants = rechercherTag(motRecherche, chaqueAppareilsSansDoublons)
     if (groupeAppareilTag !== null) { groupeAppareilTag.innerHTML = '' }
-    chaqueAppareilsSansDoublons.forEach((motAppareilTag) => {
-      groupeAppareilTag.appendChild(new Tag().tagDivAppareil(motAppareilTag))
+    tagsCorrespondants.forEach((motAppareilTag) => {
+      groupeAppareilTag.appendChild(tagDivAppareil(motAppareilTag))
     })
   })
-  inputUstensilsTag.addEventListener('click', () => {
+  inputUstensilsTag.addEventListener('input', (e) => {
+    const motRecherche = e.target.value
     const recettesAffichees = document.querySelectorAll('article:not(.invisible)')
     groupeAppareilTag.className = 'appareils-groupe'
     groupeIngredientTag.className = 'ingredients-groupe'
@@ -98,15 +136,16 @@ export function interactionRecherche () {
       const chaqueAppareils = recetteAffiche.querySelectorAll('.appareil')
       const chaqueUstensiles = recetteAffiche.querySelectorAll('.ustensile')
 
-      chaqueIngredient.forEach((ingredient) => tableauIngredients.push(ingredient.textContent))
-      chaqueAppareils.forEach((appareil) => tableauAppareils.push(appareil.textContent))
-      chaqueUstensiles.forEach((ustensile) => tableauUstensiles.push(ustensile.textContent))
+      chaqueIngredient.forEach((ingredient) => tableauIngredients.push(ingredient.textContent.toLowerCase()))
+      chaqueAppareils.forEach((appareil) => tableauAppareils.push(appareil.textContent.toLowerCase()))
+      chaqueUstensiles.forEach((ustensile) => tableauUstensiles.push(ustensile.textContent.toLowerCase()))
     })
-    const chaqueUstensilesSansDoublons = EffaceDoubleDonnees(tableauUstensiles)
+    const chaqueUstensilesSansDoublons = effaceDoubleDonnees(tableauUstensiles)
+    const tagsCorrespondants = rechercherTag(motRecherche, chaqueUstensilesSansDoublons)
 
     if (groupeUstensilTag !== null) { groupeUstensilTag.innerHTML = '' }
-    chaqueUstensilesSansDoublons.forEach((motUstensilTag) => {
-      groupeUstensilTag.appendChild(new Tag().tagDivUstensil(motUstensilTag))
+    tagsCorrespondants.forEach((motUstensilTag) => {
+      groupeUstensilTag.appendChild(tagDivUstensil(motUstensilTag))
     })
   })
 }
