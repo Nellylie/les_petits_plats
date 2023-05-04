@@ -1,5 +1,5 @@
 import { declencheurTriArticleAffiche } from './filtreArticleAffiche.js'
-import { tagDivAppareil, tagDivUstensil, tagDivIngredient } from './tag.js'
+import { tagDivAppareil, tagDivUstensil, tagDivIngredient } from './Tag.js'
 import { effaceDoubleDonnees } from './utilitairesfonctions.js'
 import { rechercherTag } from './tagRecherche.js'
 export function interactionRecherche () {
