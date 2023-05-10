@@ -10741,6 +10741,7 @@ body {
   width: 99%;
   padding-left: 10px;
   margin: auto;
+  border-radius: 5px;
 }
 
 .icone {
@@ -10774,54 +10775,54 @@ body {
 }
 
 .ingredients-groupe {
-  gap: 0 10px;
-  display: flex;
-  align-items: center;
-  height: 50px;
-  width: 140px;
+  display: none;
 }
 
 .appareils-groupe {
-  display: flex;
-  align-items: center;
-  gap: 0 10px;
-  height: 50px;
-  width: 140px;
+  display: none;
 }
 
 .ustensiles-groupe {
-  display: flex;
-  height: 50px;
-  gap: 0 10px;
-  width: 140px;
-  align-items: center;
+  display: none;
 }
 
-.ingredients-groupe--deploye {
+.ingredients-groupe--visible {
+  position: relative;
   height: auto;
   gap: 0 10px;
   width: auto;
   display: grid;
   grid-template-columns: auto auto auto;
   background-color: #3282F7;
+  border-radius: 5px;
+  padding: 15px;
+  top: -10px;
 }
 
-.appareils-groupe--deploye {
+.appareils-groupe--visible {
+  position: relative;
   height: auto;
   gap: 0 10px;
   width: auto;
   display: grid;
   grid-template-columns: auto auto auto;
   background-color: #68D9A4;
+  border-radius: 5px;
+  padding: 15px;
+  top: -10px;
 }
 
-.ustensiles-groupe--deploye {
+.ustensiles-groupe--visible {
+  position: relative;
   height: auto;
   gap: 0 10px;
   width: auto;
   display: grid;
   grid-template-columns: auto auto auto;
   background-color: #ED6454;
+  border-radius: 5px;
+  padding: 15px;
+  top: -10px;
 }
 
 .tag-affiche {
@@ -10844,7 +10845,7 @@ body {
   flex-wrap: nowrap;
 }
 
-.tag-appareil {
+.tag-appliance {
   padding: 0px 10px;
   border-radius: 10px;
   color: white;
@@ -10855,7 +10856,7 @@ body {
   flex-wrap: nowrap;
 }
 
-.tag-ustensile {
+.tag-ustensil {
   padding: 0px 10px;
   border-radius: 10px;
   color: white;

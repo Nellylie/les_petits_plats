@@ -1,4 +1,4 @@
-export class IngredientCorps {
+export class IngredientDiv {
   constructor (ingredient, quantite, unite) {
     this.ingredient = ingredient
     this.quantite = quantite
