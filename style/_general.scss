@@ -10,7 +10,11 @@ body {
 .header-logo {
   margin: 20px auto;
 }
-
+.logo{
+  width:300px;
+  height:auto;
+  margin:auto;
+}
 .main-general {
   position: relative;
   width: 90%;
@@ -48,6 +52,20 @@ body {
   margin: 0;
   height: 100%;
   outline: none;
+  color:black;
+
+}
+
+.inputSearch::placeholder{
+  color:black;
+  opacity: 0.25;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+input::placeholder{
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
 }
 
 .groupe-select {
@@ -215,75 +233,11 @@ body {
   outline: none;
   background-color: transparent;
 }
-
-.ingredients-input--taille {
-  width: 250px;
-  padding: 10px;
-  color: u.$blanc;
-  border: none;
-  outline: none;
-  background-color: transparent;
+input::placeholder{
+  color:white;
 }
-
-.appareils-input--taille {
-
-  width: 250px;
-  padding: 10px;
-  color: u.$blanc;
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-
-.ustensiles-input--taille {
-
-  width: 250px;
-  padding: 10px;
-  color: u.$blanc;
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-
-.ingredients-input--taille::placeholder {
-  align-items: center;
-  color: white;
-  opacity: 0.5;
-  ;
-}
-
-.appareils-input--taille::placeholder {
-  align-items: center;
-  color: white;
-  opacity: 0.5;
-}
-
-.ustensiles-input--taille::placeholder {
-  align-items: center;
-  color: white;
-  opacity: 0.5;
-  ;
-}
-
-.ingredients-input::placeholder {
-
-  align-items: center;
-  color: white;
-  opacity: 1;
-}
-
-.appareils-input::placeholder {
-
-  align-items: center;
-  color: white;
-  opacity: 1;
-}
-
-.ustensiles-input::placeholder {
-
-  align-items: center;
-  color: white;
-  opacity: 1;
+.inputOpacity::placeholder {
+  opacity:0.5;
 }
 
 .recettes {
@@ -324,8 +278,9 @@ body {
 }
 
 .recettes__entete {
-  font-size: medium;
-
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
 }
 
 .recettes__corps {}
@@ -337,6 +292,8 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }
 
 .corps__ingredient {
@@ -346,6 +303,8 @@ body {
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+  font-family: 'lato', sans-serif;
+  font-weight: 700;
 }
 
 .ingredientsConteneur {
@@ -381,7 +340,7 @@ body {
   text-align: end;
   white-space: nowrap;
   margin-right: 10px;
-
+  font-family: 'lato', sans-serif;
 }
 
 .preparation-temps {
@@ -396,4 +355,16 @@ body {
 
 .ingredient {
   font-weight: 700;
+}
+.message{
+  position:fixed;
+  width:50%;
+  height:50%;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40px;
+  color: u.$gris__nuance;
+  left: 50%;
+  top:300px;
+	transform: translateX(-50%);
 }
