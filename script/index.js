@@ -179,14 +179,14 @@ function regexWordArrayTagList (searchWord, arrayTagList) {
 function updateArrayRecipesFiltred (searchWord) {
   // vide le tableau dynamique des recettes et des ingredients qui va la composer
   arrayRecipesFiltred = []
-  // boucle qui parcourt les recettes
-  recipes.forEach((recipe) => {
+  // boucle FOR qui parcourt les recettes
+  for (let i = 0; i < recipes.length; i++) {
     // si la verification de chaque recette au mot clé retourne vrai
-    if (regexWordArrayRecipes(searchWord, recipe)) {
+    if (regexWordArrayRecipes(searchWord, recipes[i])) {
       // ajoute la recette au tableau
-      arrayRecipesFiltred.push(recipe)
+      arrayRecipesFiltred.push(recipes[i])
     }
-  })
+  }
 }
 
 // construction des recettes dans le DOM
@@ -197,9 +197,10 @@ function displayRecipesDom () {
   allRecipes.innerHTML = ''
 
   // parcourt le tableau des recettes bien filtrés précédemment par les mots clés utilisateur
-  arrayRecipesFiltred.forEach((recipe) => {
+  // gràce à la boucle FOR
+  for (let i = 0; i < arrayRecipesFiltred.length; i++) {
     // destructure dans de nouvelles constantes chacune des recettes
-    const { id, name, ingredients, time, description } = recipe
+    const { id, name, ingredients, time, description } = arrayRecipesFiltred[i]
     const arrayIngredients = []
     ingredients.forEach((oneIngredient) => {
       const { ingredient, quantity, unit } = oneIngredient
@@ -207,7 +208,7 @@ function displayRecipesDom () {
     })
     const cardRecipe = new RecipeDiv(id, name, arrayIngredients, time, description).cardsFactory()
     allRecipes.appendChild(cardRecipe)
-  })
+  }
 }
 
 // filtre les recettes par tag
@@ -224,13 +225,13 @@ function filtredRecipesDomByTag () {
   listAllIngredient = []; listAllAppliance = []; listAllUstensil = []
   // s'il n'y a pas de tags, les listes des tags sont mises à jour sur les recettes filtrées par la recherche globale
   if (tags.length === 0) {
-    arrayRecipesFiltred.forEach((recipeValide) => {
-      recipeValide.ingredients.forEach((ingredientOne) => {
+    for (let i = 0; i < arrayRecipesFiltred.length; i++) {
+      arrayRecipesFiltred[i].ingredients.forEach((ingredientOne) => {
         listAllIngredient.push(caseData(ingredientOne.ingredient))
       })
-      recipeValide.ustensils.forEach((ustensil) => { listAllUstensil.push(caseData(ustensil)) })
-      listAllAppliance.push(caseData(recipeValide.appliance))
-    })
+      arrayRecipesFiltred[i].ustensils.forEach((ustensil) => { listAllUstensil.push(caseData(ustensil)) })
+      listAllAppliance.push(caseData(arrayRecipesFiltred[i].appliance))
+    }
   } else {
     // initialise les listes à zero
     listAllIngredient = []; listAllAppliance = []; listAllUstensil = []
