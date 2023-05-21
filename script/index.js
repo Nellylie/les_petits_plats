@@ -119,6 +119,9 @@ function interactionSearchGlobal () {
       inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '100px'
       inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '120px'
       inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '100px'
+      inputTagUstensil.style.opacity = '1'
+      inputTagIngredient.style.opacity = '1'
+      inputTagAppliance.style.opacity = '1'
     }
     // si le click concerne un tag ingredient/appareil/ustensile met à jour les recettes filtré selon les tags de selectionnés
     // ou déselectionnés
@@ -175,7 +178,7 @@ function displayRecipesDom () {
   const allRecipes = document.querySelector('.recettes')
   // le vide
   allRecipes.innerHTML = ''
-  // verifie si le tableau des recettes filtrées est est plein
+  // verifie si le tableau des recettes filtrées est plein
   if (arrayRecipesFiltred.length !== 0) {
   // parcourt le tableau des recettes bien filtrés précédemment par les mots clés utilisateur
     arrayRecipesFiltred.forEach((recipe) => {
