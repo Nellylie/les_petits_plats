@@ -10771,6 +10771,14 @@ body {
   margin: 0;
   height: 100%;
   outline: none;
+  color: black;
+}
+
+.inputSearch::placeholder {
+  color: black;
+  opacity: 0.25;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
 }
 
 input::placeholder {
