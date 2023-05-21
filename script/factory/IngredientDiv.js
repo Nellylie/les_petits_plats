@@ -1,3 +1,5 @@
+import { caseData } from '../utilitairesfonctions.js'
+// construit le modele pour la balise div de chaque ingredient
 export class IngredientDiv {
   constructor (ingredient, quantite, unite) {
     this.ingredient = ingredient
@@ -16,7 +18,7 @@ export class IngredientDiv {
     quantite.setAttribute('class', 'quantite')
     unite.setAttribute('class', 'unite')
 
-    ingredient.textContent = `${this.ingredient.trim()}`
+    ingredient.textContent = `${caseData(this.ingredient)}`
     ingredients.appendChild(ingredient)
 
     if (this.quantite !== undefined) {

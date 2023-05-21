@@ -1,3 +1,4 @@
+// construit le model pour construire la balise article de chaque recette
 export class RecipeDiv {
   constructor (id, name, listeIngredients, time, description) {
     this.id = id
@@ -20,7 +21,7 @@ export class RecipeDiv {
     const ingredientRecipe = document.createElement('div')
     const adviceRecipe = document.createElement('div')
 
-    recipes.setAttribute('id', this.id)
+    recipes.setAttribute('id', `id-${JSON.stringify(this.id).replaceAll("'", '')}`)
     recipes.setAttribute('class', 'recettes-article')
     recipesImgContain.setAttribute('class', 'recettes__image')
     descriptionRecipes.setAttribute('class', 'recettes__detail')
@@ -33,7 +34,7 @@ export class RecipeDiv {
     ingredientRecipe.setAttribute('class', 'corps__ingredient col-6')
     adviceRecipe.setAttribute('class', 'corps__indications col-6')
     headH2Recipe.textContent = this.name
-    timeRecipe.textContent = this.time
+    timeRecipe.textContent = `${this.time} min`
     new Array(this.listeIngredients)[0].forEach((ingredient) => { ingredientRecipe.appendChild(ingredient) })
     adviceRecipe.textContent = this.description
 

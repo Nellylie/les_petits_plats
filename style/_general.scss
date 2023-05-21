@@ -305,7 +305,7 @@ body {
   min-height: 250px;
 }
 
-.invisible {
+.hidden {
   display: none;
 }
 
@@ -380,9 +380,13 @@ body {
   font-weight: 700;
   text-align: end;
   white-space: nowrap;
+  margin-right: 10px;
+
 }
 
-.preparation-temps {}
+.preparation-temps {
+  margin-right: 20px;
+}
 
 .entete__titre {
   font-size: 18px;
