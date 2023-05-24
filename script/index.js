@@ -41,18 +41,26 @@ function interactionSearchGlobal () {
     // récupère la valeur de l'input de la barre
     const searchWord = globalSearch.value
     // si + 3 ou vide, actualise le tableau des recettes avec le mot clé entré par l'utilisateur
-    if (searchWord.length >= 3 || searchWord === '') {
+    if (searchWord.length >= 3) {
+      updateArrayRecipesFiltred(searchWord)
       filtredRecipesDomByTag()
 
       // appel la fonction pour construire les recettes
       displayRecipesDom()
       // actualise les listes de tags avec les recettes visibles
       displayTagsDom('')
+    } else {
+      updateArrayRecipesFiltred('')
+      filtredRecipesDomByTag()
+      displayRecipesDom()
+      displayTagsDom('')
     }
   })
   // agit au click sur le bouton de la barre de recherche
   globalSearchButton.addEventListener('click', () => {
     // appel la fonction pour construire les recettes
+    const searchWord = globalSearch.value
+    updateArrayRecipesFiltred(searchWord)
     displayRecipesDom()
     filtredRecipesDomByTag()
     displayTagsDom('')
@@ -126,6 +134,8 @@ function interactionSearchGlobal () {
     // si le click concerne un tag ingredient/appareil/ustensile met à jour les recettes filtré selon les tags de selectionnés
     // ou déselectionnés
     if (e.target.className === 'tag-ingredient tag col-sm-auto' || e.target.className === 'tag-appliance tag col-sm-auto' || e.target.className === 'tag-ustensil tag col-sm-auto' || e.target.classList.contains('close')) {
+      const searchWord = globalSearch.value
+      updateArrayRecipesFiltred(searchWord)
       filtredRecipesDomByTag()
       // appel la fonction pour construire les recettes
       displayRecipesDom()
@@ -208,9 +218,6 @@ function filtredRecipesDomByTag () {
   const recipeCheckFalse = [] // un tableau qui récupère les ids des recettes qui ne répond pas aux tags
   const recipeCheckTrue = [] // un tableau qui récupère les ids des recettes qui répondent vrai aux tags
   const recipesVisible = [] // tableau pour stocker les ids des recettes qui ne sont fausses pour aucun tags
-  const globalSearch = document.querySelector('.inputSearch')
-  const searchWord = globalSearch.value
-  updateArrayRecipesFiltred(searchWord)
   // initialise les listes à zero
   listAllIngredient = []; listAllAppliance = []; listAllUstensil = []
   // s'il n'y a pas de tags, les listes des tags sont mises à jour sur les recettes filtrées par la recherche globale
