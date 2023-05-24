@@ -25,7 +25,7 @@ function addTag (divTagButton, tagId) {
   const tagContain = document.querySelector('.tag-affiche')
   if (tagContain.querySelector(`#${tagId}`) === null) {
     const iconeCross = document.createElement('i')
-    iconeCross.setAttribute('class', 'fa-regular fa-circle-xmark fa-padding')
+    iconeCross.setAttribute('class', 'fa-regular fa-circle-xmark fa-padding close')
     divTagButton.appendChild(iconeCross)
     tagContain.appendChild(divTagButton)
   }

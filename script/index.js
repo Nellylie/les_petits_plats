@@ -125,7 +125,7 @@ function interactionSearchGlobal () {
     }
     // si le click concerne un tag ingredient/appareil/ustensile met à jour les recettes filtré selon les tags de selectionnés
     // ou déselectionnés
-    if (e.target.className === 'tag-ingredient tag col-sm-auto' || e.target.className === 'tag-appliance tag col-sm-auto' || e.target.className === 'tag-ustensil tag col-sm-auto') {
+    if (e.target.className === 'tag-ingredient tag col-sm-auto' || e.target.className === 'tag-appliance tag col-sm-auto' || e.target.className === 'tag-ustensil tag col-sm-auto' || e.target.classList === 'close') {
       filtredRecipesDomByTag()
       // appel la fonction pour construire les recettes
       displayRecipesDom()
@@ -293,8 +293,8 @@ function openListTagIngredient () {
   // change l'apparence pour le placeholder
   inputTagIngredient.style.opacity = '0.5'
   inputTagIngredient.placeholder = 'Rechercher un ingrédient'; inputTagIngredient.style.width = '250px'
-  inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '100px'; inputTagUstensil.style.opacity = '1'
-  inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '100px'; inputTagAppliance.style.opacity = '1'
+  inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '120px'; inputTagUstensil.style.opacity = '1'
+  inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '120px'; inputTagAppliance.style.opacity = '1'
 
   // filtre les recettes selon les tags de selectionnés par l'utilisateur
   filtredRecipesDomByTag()
@@ -314,8 +314,8 @@ function openListTagAppliance () {
   const keyWord = inputTagAppliance.value
   inputTagAppliance.style.opacity = '0.5'
   inputTagAppliance.placeholder = 'Rechercher un appareil'; inputTagAppliance.style.width = '250px'
-  inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '100px'; inputTagIngredient.style.opacity = '1'
-  inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '100px'; inputTagUstensil.style.opacity = '1'
+  inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '120px'; inputTagIngredient.style.opacity = '1'
+  inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '120px'; inputTagUstensil.style.opacity = '1'
   filtredRecipesDomByTag()
   // appel la fonction pour construire les recettes
   displayRecipesDom()
@@ -331,8 +331,8 @@ function openListTagUstensiles () {
   const keyWord = inputTagUstensil.value
   inputTagUstensil.style.opacity = '0.5'
   inputTagUstensil.placeholder = 'Rechercher un ustensile'; inputTagUstensil.style.width = '250px'
-  inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '100px'; inputTagIngredient.style.opacity = '1'
-  inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '100px'; inputTagAppliance.style.opacity = '1'
+  inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '120px'; inputTagIngredient.style.opacity = '1'
+  inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '120px'; inputTagAppliance.style.opacity = '1'
   filtredRecipesDomByTag()
   displayTagsDom(keyWord); displayTagClickDom('ustensiles')
   // appel la fonction pour construire les recettes
