@@ -125,7 +125,7 @@ function interactionSearchGlobal () {
     }
     // si le click concerne un tag ingredient/appareil/ustensile met à jour les recettes filtré selon les tags de selectionnés
     // ou déselectionnés
-    if (e.target.className === 'tag-ingredient tag col-sm-auto' || e.target.className === 'tag-appliance tag col-sm-auto' || e.target.className === 'tag-ustensil tag col-sm-auto' || e.target.classList === 'close') {
+    if (e.target.className === 'tag-ingredient tag col-sm-auto' || e.target.className === 'tag-appliance tag col-sm-auto' || e.target.className === 'tag-ustensil tag col-sm-auto' || e.target.classList.contains('close')) {
       filtredRecipesDomByTag()
       // appel la fonction pour construire les recettes
       displayRecipesDom()
