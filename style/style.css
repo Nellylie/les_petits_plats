@@ -10722,7 +10722,7 @@ textarea.form-control-lg {
 body {
   margin: auto;
   width: 100%;
-  min-width: 1000px;
+  min-width: 1400px;
 }
 
 .header-logo {
@@ -10959,11 +10959,11 @@ input::placeholder {
 .recettes {
   margin: 0 auto !important;
   display: grid !important;
-  gap: 0 5% !important;
-  grid-template-columns: 30% 30% 30% !important;
+  grid-template-columns: 33% 33% 33% !important;
   grid-auto-rows: auto;
   font-size: x-small;
   line-height: 17px;
+  min-width: 1000px;
 }
 
 .recettes-article {
@@ -10971,7 +10971,8 @@ input::placeholder {
   line-height: 17px;
   border-radius: 5px 5px 0px 0px;
   margin: 20px auto;
-  min-width: 250px;
+  min-width: 350px;
+  width: 100%;
   min-height: 250px;
 }
 
@@ -10990,6 +10991,8 @@ input::placeholder {
   margin: auto;
   background-color: #E7E7E7;
   padding: 20px;
+  border-radius: 0 0 5px 5px;
+  min-height: 200px;
 }
 
 .recettes__entete {
