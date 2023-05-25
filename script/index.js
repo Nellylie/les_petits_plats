@@ -147,14 +147,29 @@ function interactionSearchGlobal () {
 interactionSearchGlobal()
 
 // gère la recherche globale, utilisé dans la boucle pour remplir le tableau dynamique de recettes valides
-function regexWordArrayRecipes (searchWord, recipe) {
+function regexWordArrayRecipes (searchWord, recipe, type) {
   // recupère le mot clé de l'utilisateur et le forme dans un objet regexp non sensible à la casse
   const searchBar = new RegExp(searchWord, 'gi')
   // transforme en string les données json pour normaliser la recherche de recette,
   // retourne vrai ou faux selon la presence du mot clé dans la recette
-  let resultat
-  if (searchBar.test(JSON.stringify(recipe.name)) || searchBar.test(JSON.stringify(recipe.description)) || searchBar.test(JSON.stringify(recipe.ingredients)) || searchBar.test(JSON.stringify(recipe.appliance)) || searchBar.test(JSON.stringify(recipe.ustensils))) {
-    resultat = true
+  let resultat = false
+  switch (type) {
+    case 'search': if (searchBar.test(JSON.stringify(recipe.name)) || searchBar.test(JSON.stringify(recipe.description)) || searchBar.test(JSON.stringify(recipe.ingredients))) {
+      resultat = true
+    }
+      break
+    case 'tag-ingredient': if (searchBar.test(JSON.stringify(recipe.ingredients))) {
+      resultat = true
+    }
+      break
+    case 'tag-appliance': if (searchBar.test(JSON.stringify(recipe.appliance))) {
+      resultat = true
+    }
+      break
+    case 'tag-ustensil' : if (searchBar.test(JSON.stringify(recipe.ustensils))) {
+      resultat = true
+    }
+      break
   }
   return resultat
 }
@@ -175,7 +190,7 @@ function updateArrayRecipesFiltred (searchWord) {
   // boucle qui parcourt les recettes
   recipes.forEach((recipe) => {
     // si la verification de chaque recette au mot clé retourne vrai
-    if (regexWordArrayRecipes(searchWord, recipe)) {
+    if (regexWordArrayRecipes(searchWord, recipe, 'search')) {
       // ajoute la recette au tableau
       arrayRecipesFiltred.push(recipe)
     }
@@ -236,13 +251,27 @@ function filtredRecipesDomByTag () {
     // s'il y a des tags, cela vérifie pour chacun d'eux la validité des recettes
     tags.forEach((tag) => {
       arrayRecipesFiltred.forEach((recipe) => {
+        if (tag.classList.contains('tag-ingredient')) {
         // si la verification retourne : faux
-        if (!regexWordArrayRecipes(tag.getAttribute('name'), recipe)) {
+          if (!regexWordArrayRecipes(tag.getAttribute('name'), recipe, 'tag-ingredient')) {
           // cela l'ajoute dans le tableau des faux
-          recipeCheckFalse.push(recipe.id)
-        } else {
+            recipeCheckFalse.push(recipe.id)
+          } else {
           // cela l'ajoute dans le tableau des vrais
-          recipeCheckTrue.push(recipe.id)
+            recipeCheckTrue.push(recipe.id)
+          }
+        } else if (tag.classList.contains('tag-appliance')) {
+          if (!regexWordArrayRecipes(tag.getAttribute('name'), recipe, 'tag-appliance')) {
+            recipeCheckFalse.push(recipe.id)
+          } else {
+            recipeCheckTrue.push(recipe.id)
+          }
+        } else if (tag.classList.contains('tag-ustensil')) {
+          if (!regexWordArrayRecipes(tag.getAttribute('name'), recipe, 'tag-ustensil')) {
+            recipeCheckFalse.push(recipe.id)
+          } else {
+            recipeCheckTrue.push(recipe.id)
+          }
         }
       })
     })
