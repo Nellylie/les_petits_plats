@@ -147,14 +147,29 @@ function interactionSearchGlobal () {
 interactionSearchGlobal()
 
 // gère la recherche globale, utilisé dans la boucle pour remplir le tableau dynamique de recettes valides
-function regexWordArrayRecipes (searchWord, recipe) {
+function regexWordArrayRecipes (searchWord, recipe, type) {
   // recupère le mot clé de l'utilisateur et le forme dans un objet regexp non sensible à la casse
   const searchBar = new RegExp(searchWord, 'gi')
   // transforme en string les données json pour normaliser la recherche de recette,
   // retourne vrai ou faux selon la presence du mot clé dans la recette
-  let resultat
-  if (searchBar.test(JSON.stringify(recipe.name)) || searchBar.test(JSON.stringify(recipe.description)) || searchBar.test(JSON.stringify(recipe.ingredients)) || searchBar.test(JSON.stringify(recipe.appliance)) || searchBar.test(JSON.stringify(recipe.ustensils))) {
-    resultat = true
+  let resultat = false
+  switch (type) {
+    case 'search': if (searchBar.test(JSON.stringify(recipe.name)) || searchBar.test(JSON.stringify(recipe.description)) || searchBar.test(JSON.stringify(recipe.ingredients))) {
+      resultat = true
+    }
+      break
+    case 'tag-ingredient': if (searchBar.test(JSON.stringify(recipe.ingredients))) {
+      resultat = true
+    }
+      break
+    case 'tag-appliance': if (searchBar.test(JSON.stringify(recipe.appliance))) {
+      resultat = true
+    }
+      break
+    case 'tag-ustensil' : if (searchBar.test(JSON.stringify(recipe.ustensils))) {
+      resultat = true
+    }
+      break
   }
   return resultat
 }
@@ -172,14 +187,14 @@ function regexWordArrayTagList (searchWord, arrayTagList) {
 function updateArrayRecipesFiltred (searchWord) {
   // vide le tableau dynamique des recettes et des ingredients qui va la composer
   arrayRecipesFiltred = []
-  // boucle FOR qui parcourt les recettes
-  for (let i = 0; i < recipes.length; i++) {
+  // boucle qui parcourt les recettes
+  recipes.forEach((recipe) => {
     // si la verification de chaque recette au mot clé retourne vrai
-    if (regexWordArrayRecipes(searchWord, recipes[i])) {
+    if (regexWordArrayRecipes(searchWord, recipe, 'search')) {
       // ajoute la recette au tableau
-      arrayRecipesFiltred.push(recipes[i])
+      arrayRecipesFiltred.push(recipe)
     }
-  }
+  })
 }
 
 // construction des recettes dans le DOM
@@ -188,14 +203,12 @@ function displayRecipesDom () {
   const allRecipes = document.querySelector('.recettes')
   // le vide
   allRecipes.innerHTML = ''
-
   // verifie si le tableau des recettes filtrées est plein
   if (arrayRecipesFiltred.length !== 0) {
-    // parcourt le tableau des recettes bien filtrés précédemment par les mots clés utilisateur
-    // gràce à la boucle FOR
-    for (let i = 0; i < arrayRecipesFiltred.length; i++) {
+  // parcourt le tableau des recettes bien filtrés précédemment par les mots clés utilisateur
+    arrayRecipesFiltred.forEach((recipe) => {
     // destructure dans de nouvelles constantes chacune des recettes
-      const { id, name, ingredients, time, description } = arrayRecipesFiltred[i]
+      const { id, name, ingredients, time, description } = recipe
       const arrayIngredients = []
       ingredients.forEach((oneIngredient) => {
         const { ingredient, quantity, unit } = oneIngredient
@@ -203,7 +216,7 @@ function displayRecipesDom () {
       })
       const cardRecipe = new RecipeDiv(id, name, arrayIngredients, time, description).cardsFactory()
       allRecipes.appendChild(cardRecipe)
-    }
+    })
   } else {
   // si le tableau des recettes filtrées est vide, affiche un message avertissant l'utilisateur
     const messageDiv = document.createElement('div')
@@ -224,13 +237,13 @@ function filtredRecipesDomByTag () {
   listAllIngredient = []; listAllAppliance = []; listAllUstensil = []
   // s'il n'y a pas de tags, les listes des tags sont mises à jour sur les recettes filtrées par la recherche globale
   if (tags.length === 0) {
-    for (let i = 0; i < arrayRecipesFiltred.length; i++) {
-      arrayRecipesFiltred[i].ingredients.forEach((ingredientOne) => {
+    arrayRecipesFiltred.forEach((recipeValide) => {
+      recipeValide.ingredients.forEach((ingredientOne) => {
         listAllIngredient.push(caseData(ingredientOne.ingredient))
       })
-      arrayRecipesFiltred[i].ustensils.forEach((ustensil) => { listAllUstensil.push(caseData(ustensil)) })
-      listAllAppliance.push(caseData(arrayRecipesFiltred[i].appliance))
-    }
+      recipeValide.ustensils.forEach((ustensil) => { listAllUstensil.push(caseData(ustensil)) })
+      listAllAppliance.push(caseData(recipeValide.appliance))
+    })
   } else {
     // initialise les listes à zero
     listAllIngredient = []; listAllAppliance = []; listAllUstensil = []
@@ -238,13 +251,27 @@ function filtredRecipesDomByTag () {
     // s'il y a des tags, cela vérifie pour chacun d'eux la validité des recettes
     tags.forEach((tag) => {
       arrayRecipesFiltred.forEach((recipe) => {
+        if (tag.classList.contains('tag-ingredient')) {
         // si la verification retourne : faux
-        if (!regexWordArrayRecipes(tag.getAttribute('name'), recipe)) {
+          if (!regexWordArrayRecipes(tag.getAttribute('name'), recipe, 'tag-ingredient')) {
           // cela l'ajoute dans le tableau des faux
-          recipeCheckFalse.push(recipe.id)
-        } else {
+            recipeCheckFalse.push(recipe.id)
+          } else {
           // cela l'ajoute dans le tableau des vrais
-          recipeCheckTrue.push(recipe.id)
+            recipeCheckTrue.push(recipe.id)
+          }
+        } else if (tag.classList.contains('tag-appliance')) {
+          if (!regexWordArrayRecipes(tag.getAttribute('name'), recipe, 'tag-appliance')) {
+            recipeCheckFalse.push(recipe.id)
+          } else {
+            recipeCheckTrue.push(recipe.id)
+          }
+        } else if (tag.classList.contains('tag-ustensil')) {
+          if (!regexWordArrayRecipes(tag.getAttribute('name'), recipe, 'tag-ustensil')) {
+            recipeCheckFalse.push(recipe.id)
+          } else {
+            recipeCheckTrue.push(recipe.id)
+          }
         }
       })
     })
@@ -300,8 +327,8 @@ function openListTagIngredient () {
   // change l'apparence pour le placeholder
   inputTagIngredient.style.opacity = '0.5'
   inputTagIngredient.placeholder = 'Rechercher un ingrédient'; inputTagIngredient.style.width = '250px'
-  inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '120px'; inputTagUstensil.style.opacity = '1'
-  inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '120px'; inputTagAppliance.style.opacity = '1'
+  inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '100px'; inputTagUstensil.style.opacity = '1'
+  inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '100px'; inputTagAppliance.style.opacity = '1'
 
   // filtre les recettes selon les tags de selectionnés par l'utilisateur
   filtredRecipesDomByTag()
@@ -321,8 +348,8 @@ function openListTagAppliance () {
   const keyWord = inputTagAppliance.value
   inputTagAppliance.style.opacity = '0.5'
   inputTagAppliance.placeholder = 'Rechercher un appareil'; inputTagAppliance.style.width = '250px'
-  inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '120px'; inputTagIngredient.style.opacity = '1'
-  inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '120px'; inputTagUstensil.style.opacity = '1'
+  inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '100px'; inputTagIngredient.style.opacity = '1'
+  inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '100px'; inputTagUstensil.style.opacity = '1'
   filtredRecipesDomByTag()
   // appel la fonction pour construire les recettes
   displayRecipesDom()
@@ -338,8 +365,8 @@ function openListTagUstensiles () {
   const keyWord = inputTagUstensil.value
   inputTagUstensil.style.opacity = '0.5'
   inputTagUstensil.placeholder = 'Rechercher un ustensile'; inputTagUstensil.style.width = '250px'
-  inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '120px'; inputTagIngredient.style.opacity = '1'
-  inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '120px'; inputTagAppliance.style.opacity = '1'
+  inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '100px'; inputTagIngredient.style.opacity = '1'
+  inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '100px'; inputTagAppliance.style.opacity = '1'
   filtredRecipesDomByTag()
   displayTagsDom(keyWord); displayTagClickDom('ustensiles')
   // appel la fonction pour construire les recettes
