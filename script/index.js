@@ -92,17 +92,50 @@ function interactionSearchGlobal () {
     }
   })
 
+  let clickI = false
+  let clickA = false
+  let clickU = false
   // agit au click de l'utilisateur sur le bouton et le champs input des ingredients, appareils et ustensiles
   idIconeIngredients.addEventListener('click', (e) => {
-    openListTagIngredient()
+    if (!clickI) {
+      clickI = true
+      openListTagIngredient()
+    } else {
+      clickI = false
+      hideTagClickDom('ingredients', '0')
+      angleIconeMove('down', '0')
+      inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '120px'
+      inputTagIngredient.style.opacity = '1'
+    }
   })
 
   idIconeAppliances.addEventListener('click', () => {
-    openListTagAppliance()
+    if (!clickA) {
+      clickA = true
+      openListTagAppliance()
+    } else {
+      clickA = false
+      hideTagClickDom('appareils', '1')
+      angleIconeMove('down', '1')
+      inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '100px'
+      inputTagAppliance.style.opacity = '1'
+    }
   })
+
   idIconeUstensiles.addEventListener('click', () => {
-    openListTagUstensiles()
+    if (!clickU) {
+      clickU = true
+      openListTagUstensiles()
+    } else {
+      clickU = false
+      hideTagClickDom('ustensiles', '2')
+      angleIconeMove('down', '2')
+      inputTagUstensil.placeholder = 'Ustensiles'
+      inputTagUstensil.style.width = '100px'
+      inputTagUstensil.style.opacity = '1'
+    }
   })
+
   inputTagIngredient.addEventListener('click', () => {
     openListTagIngredient()
   })
@@ -115,22 +148,6 @@ function interactionSearchGlobal () {
   })
   // agit au click de l'utilisateur sur le document html
   document.addEventListener('click', (e) => {
-    console.log(e.target)
-    // si le click ne concerne pas les tags, ferme les listes de tags
-    if (e.target.className !== 'ingredients-input' && e.target.className !== 'appareils-input' && e.target.className !== 'ustensiles-input' && e.target.className !== 'tag' && e.target.id !== 'i-0' && e.target.id !== 'i-1' && e.target.id !== 'i-2') {
-      hideTagClickDom('ingredients', '0')
-      hideTagClickDom('appareils', '1')
-      hideTagClickDom('ustensiles', '2')
-      angleIconeMove('down', '2')
-      angleIconeMove('down', '1')
-      angleIconeMove('down', '0')
-      inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '100px'
-      inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '120px'
-      inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '100px'
-      inputTagUstensil.style.opacity = '1'
-      inputTagIngredient.style.opacity = '1'
-      inputTagAppliance.style.opacity = '1'
-    }
     // si le click concerne un tag ingredient/appareil/ustensile met à jour les recettes filtré selon les tags de selectionnés
     // ou déselectionnés
     if (e.target.className === 'tag-ingredient tag col-sm-auto' || e.target.className === 'tag-appliance tag col-sm-auto' || e.target.className === 'tag-ustensil tag col-sm-auto' || e.target.classList.contains('close')) {
@@ -143,15 +160,10 @@ function interactionSearchGlobal () {
   }
   )
 }
-// appel la fonction autour de l'interaction au chargement de la page
 interactionSearchGlobal()
 
-// gère la recherche globale, utilisé dans la boucle pour remplir le tableau dynamique de recettes valides
 function regexWordArrayRecipes (searchWord, recipe, type) {
-  // recupère le mot clé de l'utilisateur et le forme dans un objet regexp non sensible à la casse
   const searchBar = new RegExp(searchWord, 'gi')
-  // transforme en string les données json pour normaliser la recherche de recette,
-  // retourne vrai ou faux selon la presence du mot clé dans la recette
   let resultat = false
   switch (type) {
     case 'search': if (searchBar.test(JSON.stringify(recipe.name)) || searchBar.test(JSON.stringify(recipe.description)) || searchBar.test(JSON.stringify(recipe.ingredients))) {
@@ -187,14 +199,12 @@ function regexWordArrayTagList (searchWord, arrayTagList) {
 function updateArrayRecipesFiltred (searchWord) {
   // vide le tableau dynamique des recettes et des ingredients qui va la composer
   arrayRecipesFiltred = []
-  // boucle qui parcourt les recettes
-  recipes.forEach((recipe) => {
-    // si la verification de chaque recette au mot clé retourne vrai
-    if (regexWordArrayRecipes(searchWord, recipe, 'search')) {
+  for (let i = 0; i < recipes.length; i++) {
+    if (regexWordArrayRecipes(searchWord, recipes[i], 'search')) {
       // ajoute la recette au tableau
-      arrayRecipesFiltred.push(recipe)
+      arrayRecipesFiltred.push(recipes[i])
     }
-  })
+  }
 }
 
 // construction des recettes dans le DOM
@@ -206,9 +216,8 @@ function displayRecipesDom () {
   // verifie si le tableau des recettes filtrées est plein
   if (arrayRecipesFiltred.length !== 0) {
   // parcourt le tableau des recettes bien filtrés précédemment par les mots clés utilisateur
-    arrayRecipesFiltred.forEach((recipe) => {
-    // destructure dans de nouvelles constantes chacune des recettes
-      const { id, name, ingredients, time, description } = recipe
+    for (let i = 0; i < arrayRecipesFiltred.length; i++) {
+      const { id, name, ingredients, time, description } = arrayRecipesFiltred[i]
       const arrayIngredients = []
       ingredients.forEach((oneIngredient) => {
         const { ingredient, quantity, unit } = oneIngredient
@@ -216,7 +225,7 @@ function displayRecipesDom () {
       })
       const cardRecipe = new RecipeDiv(id, name, arrayIngredients, time, description).cardsFactory()
       allRecipes.appendChild(cardRecipe)
-    })
+    }
   } else {
   // si le tableau des recettes filtrées est vide, affiche un message avertissant l'utilisateur
     const messageDiv = document.createElement('div')
