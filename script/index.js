@@ -92,17 +92,50 @@ function interactionSearchGlobal () {
     }
   })
 
+  let clickI = false
+  let clickA = false
+  let clickU = false
   // agit au click de l'utilisateur sur le bouton et le champs input des ingredients, appareils et ustensiles
   idIconeIngredients.addEventListener('click', (e) => {
-    openListTagIngredient()
+    if (!clickI) {
+      clickI = true
+      openListTagIngredient()
+    } else {
+      clickI = false
+      hideTagClickDom('ingredients', '0')
+      angleIconeMove('down', '0')
+      inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '120px'
+      inputTagIngredient.style.opacity = '1'
+    }
   })
 
   idIconeAppliances.addEventListener('click', () => {
-    openListTagAppliance()
+    if (!clickA) {
+      clickA = true
+      openListTagAppliance()
+    } else {
+      clickA = false
+      hideTagClickDom('appareils', '1')
+      angleIconeMove('down', '1')
+      inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '100px'
+      inputTagAppliance.style.opacity = '1'
+    }
   })
+
   idIconeUstensiles.addEventListener('click', () => {
-    openListTagUstensiles()
+    if (!clickU) {
+      clickU = true
+      openListTagUstensiles()
+    } else {
+      clickU = false
+      hideTagClickDom('ustensiles', '2')
+      angleIconeMove('down', '2')
+      inputTagUstensil.placeholder = 'Ustensiles'
+      inputTagUstensil.style.width = '100px'
+      inputTagUstensil.style.opacity = '1'
+    }
   })
+
   inputTagIngredient.addEventListener('click', () => {
     openListTagIngredient()
   })
@@ -115,22 +148,6 @@ function interactionSearchGlobal () {
   })
   // agit au click de l'utilisateur sur le document html
   document.addEventListener('click', (e) => {
-    console.log(e.target)
-    // si le click ne concerne pas les tags, ferme les listes de tags
-    if (e.target.className !== 'ingredients-input' && e.target.className !== 'appareils-input' && e.target.className !== 'ustensiles-input' && e.target.className !== 'tag' && e.target.id !== 'i-0' && e.target.id !== 'i-1' && e.target.id !== 'i-2') {
-      hideTagClickDom('ingredients', '0')
-      hideTagClickDom('appareils', '1')
-      hideTagClickDom('ustensiles', '2')
-      angleIconeMove('down', '2')
-      angleIconeMove('down', '1')
-      angleIconeMove('down', '0')
-      inputTagUstensil.placeholder = 'Ustensiles'; inputTagUstensil.style.width = '100px'
-      inputTagIngredient.placeholder = 'Ingrédients'; inputTagIngredient.style.width = '120px'
-      inputTagAppliance.placeholder = 'Appareils'; inputTagAppliance.style.width = '100px'
-      inputTagUstensil.style.opacity = '1'
-      inputTagIngredient.style.opacity = '1'
-      inputTagAppliance.style.opacity = '1'
-    }
     // si le click concerne un tag ingredient/appareil/ustensile met à jour les recettes filtré selon les tags de selectionnés
     // ou déselectionnés
     if (e.target.className === 'tag-ingredient tag col-sm-auto' || e.target.className === 'tag-appliance tag col-sm-auto' || e.target.className === 'tag-ustensil tag col-sm-auto' || e.target.classList.contains('close')) {
