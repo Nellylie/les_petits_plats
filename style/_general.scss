@@ -329,6 +329,7 @@ input::placeholder{
   width: auto;
   padding: 0;
   margin: 0;
+  font-weight: 400;
 }
 
 .unite {
@@ -336,6 +337,8 @@ input::placeholder{
   width: auto;
   padding: 0;
   margin: 0;
+  font-weight: 400;
+
 }
 
 .entete__temps-preparation {
@@ -360,6 +363,8 @@ input::placeholder{
 .ingredient {
   font-weight: 700;
 }
+
+
 .message{
   position:fixed;
   width:50%;
