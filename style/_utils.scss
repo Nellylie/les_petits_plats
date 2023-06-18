@@ -1,4 +1,3 @@
-
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 
@@ -20,6 +19,7 @@ $orange: #ED6454;
         @content;
     }
 }
+
 @mixin tablet {
     @media (min-width:800px) and (max-width: 1190px) {
         @content;
