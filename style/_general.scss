@@ -136,7 +136,7 @@ input::placeholder {
   }
 
   @include u.tablet {
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
 
   }
 
@@ -161,7 +161,7 @@ input::placeholder {
   }
 
   @include u.tablet { 
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
   }
 
 
@@ -186,7 +186,7 @@ input::placeholder {
   }
 
   @include u.tablet { 
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
   }
 
   @include u.wide-desktop {

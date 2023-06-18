@@ -20,12 +20,12 @@ $orange: #ED6454;
     }
 }
 @mixin tablet {
-    @media (min-width:801px) and (max-width: 1100px) {
+    @media (min-width:800px) and (max-width: 1190px) {
         @content;
     }
 }
 @mixin wide-desktop {
-    @media (min-width:1101px) {
+    @media (min-width:1190px) {
         @content;
     }
 }
