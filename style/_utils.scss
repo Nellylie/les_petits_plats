@@ -1,3 +1,4 @@
+
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 $DM-font: 'DM', sans-serif;
@@ -18,7 +19,6 @@ $orange: #ED6454;
         @content;
     }
 }
-
 @mixin tablet {
     @media (min-width:800px) and (max-width: 1190px) {
         @content;
