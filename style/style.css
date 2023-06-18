@@ -10722,7 +10722,23 @@ textarea.form-control-lg {
 body {
   margin: auto;
   width: 100%;
-  min-width: 1400px;
+}
+@media (max-width: 800px) {
+  body {
+    min-width: 700px;
+    max-width: 800px;
+  }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  body {
+    min-width: 801px;
+    max-width: 1101px;
+  }
+}
+@media (min-width: 1101px) {
+  body {
+    min-width: 1101px;
+  }
 }
 
 .header-logo {
@@ -10744,7 +10760,7 @@ body {
 .searchBar {
   background-color: #E7E7E7;
   height: 50px;
-  width: 99%;
+  width: 98%;
   padding-left: 10px;
   margin: auto;
   border-radius: 5px;
@@ -10754,8 +10770,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   height: 50px;
+  width: 30px;
 }
 
 .icone-position {
@@ -10767,7 +10784,6 @@ body {
   background-color: transparent;
   border: none;
   position: relative;
-  padding: 0;
   margin: 0;
   height: 100%;
   outline: none;
@@ -10787,10 +10803,30 @@ input::placeholder {
 }
 
 .groupe-select {
-  gap: 30px;
-  width: 500px;
+  position: relative;
   display: grid;
+  z-index: 10;
   grid-template-columns: auto auto auto;
+}
+@media (max-width: 800px) {
+  .groupe-select {
+    margin: auto;
+    width: 100%;
+  }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .groupe-select {
+    margin: 0;
+    width: 500px;
+    gap: 30px;
+  }
+}
+@media (min-width: 1101px) {
+  .groupe-select {
+    margin: 0;
+    width: 500px;
+    gap: 30px;
+  }
 }
 
 .ingredients-groupe {
@@ -10811,11 +10847,25 @@ input::placeholder {
   gap: 0 10px;
   width: auto;
   display: grid;
-  grid-template-columns: auto auto auto;
   background-color: #3282F7;
   border-radius: 5px;
   padding: 15px;
   top: -10px;
+}
+@media (max-width: 800px) {
+  .ingredients-groupe--visible {
+    grid-template-columns: auto;
+  }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .ingredients-groupe--visible {
+    grid-template-columns: auto auto;
+  }
+}
+@media (min-width: 1101px) {
+  .ingredients-groupe--visible {
+    grid-template-columns: auto auto auto;
+  }
 }
 
 .appareils-groupe--visible {
@@ -10824,11 +10874,25 @@ input::placeholder {
   gap: 0 10px;
   width: auto;
   display: grid;
-  grid-template-columns: auto auto auto;
   background-color: #68D9A4;
   border-radius: 5px;
   padding: 15px;
   top: -10px;
+}
+@media (max-width: 800px) {
+  .appareils-groupe--visible {
+    grid-template-columns: auto;
+  }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .appareils-groupe--visible {
+    grid-template-columns: auto auto;
+  }
+}
+@media (min-width: 1101px) {
+  .appareils-groupe--visible {
+    grid-template-columns: auto auto auto;
+  }
 }
 
 .ustensiles-groupe--visible {
@@ -10837,11 +10901,25 @@ input::placeholder {
   gap: 0 10px;
   width: auto;
   display: grid;
-  grid-template-columns: auto auto auto;
   background-color: #ED6454;
   border-radius: 5px;
   padding: 15px;
   top: -10px;
+}
+@media (max-width: 800px) {
+  .ustensiles-groupe--visible {
+    grid-template-columns: auto;
+  }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .ustensiles-groupe--visible {
+    grid-template-columns: auto auto;
+  }
+}
+@media (min-width: 1101px) {
+  .ustensiles-groupe--visible {
+    grid-template-columns: auto auto auto;
+  }
 }
 
 .tag-affiche {
@@ -10886,12 +10964,30 @@ input::placeholder {
   flex-wrap: nowrap;
 }
 
+.selectSearch {
+  margin: 0 0 0 11px;
+}
+
 .form-select-groupe {
   border-radius: 5px;
   font-size: 18px;
   width: auto;
-  margin: 0 0 0 10px;
   height: 50px;
+}
+@media (max-width: 800px) {
+  .form-select-groupe {
+    margin: auto;
+  }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .form-select-groupe {
+    margin: auto;
+  }
+}
+@media (min-width: 1101px) {
+  .form-select-groupe {
+    gap: 1%;
+  }
 }
 
 #form-select__ingredients {
@@ -10959,11 +11055,27 @@ input::placeholder {
 .recettes {
   margin: 0 auto !important;
   display: grid !important;
-  grid-template-columns: 33% 33% 33% !important;
   grid-auto-rows: auto;
   font-size: x-small;
   line-height: 17px;
-  min-width: 1000px;
+}
+@media (max-width: 800px) {
+  .recettes {
+    grid-template-columns: 50% 50% !important;
+    max-width: 700px;
+  }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .recettes {
+    grid-template-columns: 45% 45% !important;
+    width: 100%;
+  }
+}
+@media (min-width: 1101px) {
+  .recettes {
+    grid-template-columns: 31% 31% 31% !important;
+    width: 100%;
+  }
 }
 
 .recettes-article {
@@ -10971,9 +11083,22 @@ input::placeholder {
   line-height: 17px;
   border-radius: 5px 5px 0px 0px;
   margin: 20px auto;
-  min-width: 350px;
-  width: 100%;
   min-height: 250px;
+}
+@media (max-width: 800px) {
+  .recettes-article {
+    width: 535px;
+  }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .recettes-article {
+    width: 535px;
+  }
+}
+@media (min-width: 1101px) {
+  .recettes-article {
+    width: 100%;
+  }
 }
 
 .hidden {
@@ -10999,6 +11124,7 @@ input::placeholder {
   font-size: 18px;
   font-family: "Lato", sans-serif;
   font-weight: 700;
+  white-space: normal;
 }
 
 .corps__indications {
@@ -11050,13 +11176,23 @@ input::placeholder {
   font-weight: 400;
 }
 
+.description-header {
+  display: flex;
+  position: relative;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
 .entete__temps-preparation {
   font-size: large;
   font-weight: 700;
   text-align: end;
+  position: absolute;
+  right: 30px;
   white-space: nowrap;
-  margin-right: 10px;
   font-family: "lato", sans-serif;
+  min-width: 100px;
 }
 
 .preparation-temps {

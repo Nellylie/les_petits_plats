@@ -3,18 +3,34 @@
 body {
   margin: auto;
   width: 100%;
-  min-width: 1400px;
-  ;
+
+  @include u.mobile {
+    min-width: 700px;
+    max-width: 800px;
+  }
+
+  @include u.tablet {
+    min-width: 801px;
+    max-width: 1101px;
+
+  }
+
+
+  @include u.wide-desktop {
+    min-width: 1101px;
+  }
 }
 
 .header-logo {
   margin: 20px auto;
 }
-.logo{
-  width:300px;
-  height:auto;
-  margin:auto;
+
+.logo {
+  width: 300px;
+  height: auto;
+  margin: auto;
 }
+
 .main-general {
   position: relative;
   width: 90%;
@@ -24,7 +40,7 @@ body {
 .searchBar {
   background-color: u.$gris;
   height: 50px;
-  width: 99%;
+  width: 98%;
   padding-left: 10px;
   margin: auto;
   border-radius: 5px;
@@ -35,8 +51,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   height: 50px;
+  width:30px;
 }
 
 .icone-position {
@@ -48,31 +65,48 @@ body {
   background-color: transparent;
   border: none;
   position: relative;
-  padding: 0;
   margin: 0;
   height: 100%;
   outline: none;
-  color:black;
+  color: black;
 
 }
 
-.inputSearch::placeholder{
-  color:black;
+.inputSearch::placeholder {
+  color: black;
   opacity: 0.25;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
 }
 
-input::placeholder{
+input::placeholder {
   font-family: 'Lato', sans-serif;
   font-weight: 400;
 }
 
 .groupe-select {
-  gap: 30px;
-  width: 500px;
+  position: relative;
   display: grid;
+  z-index: 10;
   grid-template-columns: auto auto auto;
+  @include u.mobile {  
+    margin:auto;
+    width: 100%;  }
+
+  @include u.tablet { 
+  
+    margin:0;
+    width: 500px;
+    gap: 30px;
+   }
+
+
+  @include u.wide-desktop {
+    margin:0;
+    width: 500px;
+    gap: 30px;
+
+  }
 }
 
 .ingredients-groupe {
@@ -93,11 +127,23 @@ input::placeholder{
   gap: 0 10px;
   width: auto;
   display: grid;
-  grid-template-columns: auto auto auto;
   background-color: u.$bleu;
   border-radius: 5px;
   padding: 15px;
-  top:-10px;
+  top: -10px;
+  @include u.mobile {  
+    grid-template-columns: auto;
+  }
+
+  @include u.tablet {
+    grid-template-columns: auto auto;
+
+  }
+
+  @include u.wide-desktop {
+    grid-template-columns: auto auto auto;
+
+  }
 }
 
 .appareils-groupe--visible {
@@ -106,12 +152,23 @@ input::placeholder{
   gap: 0 10px;
   width: auto;
   display: grid;
-  grid-template-columns: auto auto auto;
   background-color: u.$vert;
   border-radius: 5px;
   padding: 15px;
-  top:-10px;
+  top: -10px;
+  @include u.mobile {  
+    grid-template-columns: auto;
+  }
 
+  @include u.tablet { 
+    grid-template-columns: auto auto;
+  }
+
+
+  @include u.wide-desktop {
+    grid-template-columns: auto auto auto;
+
+  }
 }
 
 .ustensiles-groupe--visible {
@@ -120,12 +177,22 @@ input::placeholder{
   gap: 0 10px;
   width: auto;
   display: grid;
-  grid-template-columns: auto auto auto;
   background-color: u.$orange;
   border-radius: 5px;
   padding: 15px;
-  top:-10px;
+  top: -10px;
+  @include u.mobile {  
+    grid-template-columns: auto;
+  }
 
+  @include u.tablet { 
+    grid-template-columns: auto auto;
+  }
+
+  @include u.wide-desktop {
+    grid-template-columns: auto auto auto;
+
+  }
 }
 
 .tag-affiche {
@@ -170,13 +237,28 @@ input::placeholder{
   white-space: nowrap;
   flex-wrap: nowrap;
 }
+.selectSearch{
+  margin: 0 0 0 11px;
 
+}
 .form-select-groupe {
   border-radius: 5px;
   font-size: 18px;
   width: auto;
-  margin: 0 0 0 10px;
   height: 50px;
+  @include u.mobile {  
+margin:auto; 
+}
+
+  @include u.tablet { 
+    margin:auto; 
+  }
+
+
+  @include u.wide-desktop {
+    gap:1%;  
+
+  }
 }
 
 #form-select__ingredients {
@@ -233,21 +315,39 @@ input::placeholder{
   outline: none;
   background-color: transparent;
 }
-input::placeholder{
-  color:white;
+
+input::placeholder {
+  color: white;
 }
+
 .inputOpacity::placeholder {
-  opacity:0.5;
+  opacity: 0.5;
 }
 
 .recettes {
   margin: 0 auto !important;
   display: grid !important;
-  grid-template-columns: 33% 33% 33% !important;
   grid-auto-rows: auto;
   font-size: x-small;
   line-height: 17px;
-  min-width: 1000px;
+
+  @include u.mobile {
+    grid-template-columns: 50% 50%!important;
+    max-width: 700px;
+  }
+
+  @include u.tablet {
+    grid-template-columns: 45% 45% !important;
+
+    width: 100%;
+  }
+
+
+  @include u.wide-desktop {
+    grid-template-columns: 31% 31% 31% !important;
+    
+  width: 100%;
+  }
 }
 
 .recettes-article {
@@ -255,9 +355,19 @@ input::placeholder{
   line-height: 17px;
   border-radius: 5px 5px 0px 0px;
   margin: 20px auto;
-  min-width: 350px;
-  width:100%;
   min-height: 250px;
+  @include u.mobile {
+    width:535px;
+
+  }
+  @include u.tablet {
+    width: 535px;
+  }
+
+
+  @include u.wide-desktop {
+    width: 100%;
+  }
 }
 
 .hidden {
@@ -285,6 +395,7 @@ input::placeholder{
   font-size: 18px;
   font-family: 'Lato', sans-serif;
   font-weight: 700;
+  white-space: normal;
 }
 
 .recettes__corps {}
@@ -340,14 +451,24 @@ input::placeholder{
   font-weight: 400;
 
 }
+.description-header{
+  display:flex;
+  position: relative;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  white-space: nowrap;
+
+}
 
 .entete__temps-preparation {
   font-size: large;
   font-weight: 700;
   text-align: end;
+  position:absolute;
+  right:30px;
   white-space: nowrap;
-  margin-right: 10px;
   font-family: 'lato', sans-serif;
+  min-width: 100px;
 }
 
 .preparation-temps {
@@ -365,15 +486,15 @@ input::placeholder{
 }
 
 
-.message{
-  position:fixed;
-  width:50%;
-  height:50%;
+.message {
+  position: fixed;
+  width: 50%;
+  height: 50%;
   font-size: 30px;
   font-weight: 700;
   line-height: 40px;
   color: u.$gris__nuance;
   left: 50%;
-  top:400px;
-	transform: translateX(-50%);
+  top: 400px;
+  transform: translateX(-50%);
 }
