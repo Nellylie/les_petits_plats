@@ -10729,13 +10729,13 @@ body {
     max-width: 800px;
   }
 }
-@media (min-width: 801px) and (max-width: 1100px) {
+@media (min-width: 800px) and (max-width: 1190px) {
   body {
     min-width: 801px;
     max-width: 1101px;
   }
 }
-@media (min-width: 1101px) {
+@media (min-width: 1190px) {
   body {
     min-width: 1101px;
   }
@@ -10814,14 +10814,14 @@ input::placeholder {
     width: 100%;
   }
 }
-@media (min-width: 801px) and (max-width: 1100px) {
+@media (min-width: 800px) and (max-width: 1190px) {
   .groupe-select {
     margin: 0;
     width: 500px;
     gap: 30px;
   }
 }
-@media (min-width: 1101px) {
+@media (min-width: 1190px) {
   .groupe-select {
     margin: 0;
     width: 500px;
@@ -10857,12 +10857,12 @@ input::placeholder {
     grid-template-columns: auto;
   }
 }
-@media (min-width: 801px) and (max-width: 1100px) {
+@media (min-width: 800px) and (max-width: 1190px) {
   .ingredients-groupe--visible {
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
   }
 }
-@media (min-width: 1101px) {
+@media (min-width: 1190px) {
   .ingredients-groupe--visible {
     grid-template-columns: auto auto auto;
   }
@@ -10884,12 +10884,12 @@ input::placeholder {
     grid-template-columns: auto;
   }
 }
-@media (min-width: 801px) and (max-width: 1100px) {
+@media (min-width: 800px) and (max-width: 1190px) {
   .appareils-groupe--visible {
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
   }
 }
-@media (min-width: 1101px) {
+@media (min-width: 1190px) {
   .appareils-groupe--visible {
     grid-template-columns: auto auto auto;
   }
@@ -10911,12 +10911,12 @@ input::placeholder {
     grid-template-columns: auto;
   }
 }
-@media (min-width: 801px) and (max-width: 1100px) {
+@media (min-width: 800px) and (max-width: 1190px) {
   .ustensiles-groupe--visible {
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
   }
 }
-@media (min-width: 1101px) {
+@media (min-width: 1190px) {
   .ustensiles-groupe--visible {
     grid-template-columns: auto auto auto;
   }
@@ -10979,12 +10979,12 @@ input::placeholder {
     margin: auto;
   }
 }
-@media (min-width: 801px) and (max-width: 1100px) {
+@media (min-width: 800px) and (max-width: 1190px) {
   .form-select-groupe {
     margin: auto;
   }
 }
-@media (min-width: 1101px) {
+@media (min-width: 1190px) {
   .form-select-groupe {
     gap: 1%;
   }
@@ -11065,13 +11065,13 @@ input::placeholder {
     max-width: 700px;
   }
 }
-@media (min-width: 801px) and (max-width: 1100px) {
+@media (min-width: 800px) and (max-width: 1190px) {
   .recettes {
     grid-template-columns: 45% 45% !important;
     width: 100%;
   }
 }
-@media (min-width: 1101px) {
+@media (min-width: 1190px) {
   .recettes {
     grid-template-columns: 31% 31% 31% !important;
     width: 100%;
@@ -11090,12 +11090,12 @@ input::placeholder {
     width: 535px;
   }
 }
-@media (min-width: 801px) and (max-width: 1100px) {
+@media (min-width: 800px) and (max-width: 1190px) {
   .recettes-article {
     width: 535px;
   }
 }
-@media (min-width: 1101px) {
+@media (min-width: 1190px) {
   .recettes-article {
     width: 100%;
   }
