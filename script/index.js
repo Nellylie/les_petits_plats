@@ -57,13 +57,8 @@ function interactionSearchGlobal () {
     }
   })
   // agit au click sur le bouton de la barre de recherche
-  globalSearchButton.addEventListener('click', () => {
-    // appel la fonction pour construire les recettes
-    const searchWord = globalSearch.value
-    updateArrayRecipesFiltred(searchWord)
-    displayRecipesDom()
-    filtredRecipesDomByTag()
-    displayTagsDom('')
+  globalSearchButton.addEventListener('click', (e) => {
+    e.preventDefault()
   })
 
   // concerne la liste de tags ingredient à l'entrée d'un caractère de l'utilisateur
