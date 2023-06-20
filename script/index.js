@@ -132,13 +132,16 @@ function interactionSearchGlobal () {
 
   inputTagIngredient.addEventListener('click', () => {
     openListTagIngredient()
+    clickI = true
   })
 
   inputTagAppliance.addEventListener('click', () => {
     openListTagAppliance()
+    clickA = true
   })
   inputTagUstensil.addEventListener('click', () => {
     openListTagUstensiles()
+    clickU = true
   })
   // agit au click de l'utilisateur sur le document html
   document.addEventListener('click', (e) => {
