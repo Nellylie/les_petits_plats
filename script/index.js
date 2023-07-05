@@ -160,22 +160,28 @@ function interactionSearchGlobal () {
 interactionSearchGlobal()
 
 function regexWordArrayRecipes (searchWord, recipe, type) {
-  const searchBar = new RegExp(searchWord, 'gi')
   let resultat = false
+  const searchRegex = new RegExp(searchWord, 'gi')
   switch (type) {
-    case 'search': if (searchBar.test(JSON.stringify(recipe.name)) || searchBar.test(JSON.stringify(recipe.description)) || searchBar.test(JSON.stringify(recipe.ingredients))) {
+    case 'search': if (recipe.name.toLowerCase().includes(searchWord.toLowerCase()) || recipe.description.toLowerCase().includes(searchWord.toLowerCase())) {
+      resultat = true
+    } else {
+      for (const ingredientValue of recipe.ingredients) {
+        if (ingredientValue.ingredient.toLowerCase().includes(searchWord.toLowerCase())) {
+          resultat = true
+        }
+      }
+    }
+      break
+    case 'tag-ingredient': if (searchRegex.test(JSON.stringify(recipe.ingredients))) {
       resultat = true
     }
       break
-    case 'tag-ingredient': if (searchBar.test(JSON.stringify(recipe.ingredients))) {
+    case 'tag-appliance': if (searchRegex.test(JSON.stringify(recipe.appliance))) {
       resultat = true
     }
       break
-    case 'tag-appliance': if (searchBar.test(JSON.stringify(recipe.appliance))) {
-      resultat = true
-    }
-      break
-    case 'tag-ustensil' : if (searchBar.test(JSON.stringify(recipe.ustensils))) {
+    case 'tag-ustensil' : if (searchRegex.test(JSON.stringify(recipe.ustensils))) {
       resultat = true
     }
       break
