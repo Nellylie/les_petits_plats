@@ -152,6 +152,7 @@ function interactionSearchGlobal () {
       const searchWord = globalSearch.value
       updateArrayRecipesFiltred(searchWord)
       filtredRecipesDomByTag()
+      displayTagsDom('')
       // appel la fonction pour construire les recettes
       displayRecipesDom()
     }
